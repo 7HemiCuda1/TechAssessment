@@ -34,10 +34,18 @@ class Test_HomePage:
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
         self.driver.maximize_window()
-        self.driver.find_element_by_id(self.hp.sliderLeftId)
-        assert self.driver.find_element_by_xpath(self.hp.sliderImage4).is_displayed()
-        self.driver.find_element_by_id(self.hp.sliderRightId).click()
-        assert self.driver.find_element_by_xpath(self.hp.sliderImage1).is_displayed()
+        try:
+            wait = WebDriverWait(self.driver,
+                                 10).until(EC.presence_of_element_located((By.ID, self.hp.sliderLeftId))).click()
+        finally:
+            assert self.driver.find_element_by_xpath(self.hp.sliderImage4).is_displayed()
+
+        try:
+            wait = WebDriverWait(self.driver,
+                                 10).until(EC.presence_of_element_located((By.ID, self.hp.sliderRightId))).click()
+        finally:
+            assert self.driver.find_element_by_xpath(self.hp.sliderImage1).is_displayed()
+
         self.driver.close()
 
     def test_login_page_navigation(self,setup):
@@ -52,6 +60,6 @@ class Test_HomePage:
 
         finally:
             #result = self.driver.find_element_by_xpath(self.hp.loginHeader)
-            assert self.driver.find_element_by_xpath(self.hp.loginPageFormid).is_displayed()
+            assert self.driver.find_element_by_id(self.hp.loginPageFormid).is_displayed()
             self.driver.close()
 
