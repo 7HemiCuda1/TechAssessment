@@ -45,9 +45,11 @@ class Test_HomePage:
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
         try:
+            sleep(5.50)
             wait = WebDriverWait(self.driver,
                                  10).until(EC.presence_of_element_located((By.XPATH,
                                                                                     self.hp.loginHeader ))).click()
+
         finally:
             result = self.driver.find_element_by_xpath(self.hp.loginHeader)
             self.driver.close()

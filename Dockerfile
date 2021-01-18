@@ -25,8 +25,7 @@ RUN chmod -R 755 /usr/local/bin/chromedriver
 ENV DISPLAY=:9222
 
 RUN pip install --upgrade pip
-RUN pip install pytest
-RUN pip install selenium
+RUN pip install -r requirements.txt
 
 USER test_user
 
