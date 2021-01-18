@@ -16,8 +16,8 @@ def setup(browser):
     chrome_prefs = {}
     options.experimental_options["prefs"] = chrome_prefs
     chrome_prefs["profile.default_content_settings"] = {"images": 2}
-#executable_path='/usr/src/app/chromedriver'
-    driver = webdriver.Chrome(options=options)
+    #TODO: make this support for windows too.
+    driver = webdriver.Chrome(executable_path='/usr/src/app/chromedriver', options=options)
     return driver
 
 @pytest.fixture()

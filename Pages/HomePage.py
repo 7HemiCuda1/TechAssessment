@@ -15,6 +15,7 @@ class HomePage:
     sliderImage2 = '//*[@id="video-2-img"]'
     sliderImage3 = '//*[@id="video-3-img"]'
     sliderImage4 = '//*[@id="video-4-img"]'
+    loginPageFormid = 'emailOrPhoneInput'
 
     # podiumChatSend = "//*[@id="ComposeMessage"]/form/div[2]/div[2]/button/div"
 

@@ -17,7 +17,7 @@ class Test_HomePage:
         self.driver = setup
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
-        sleep(0.50)
+        self.driver.maximize_window()
         self.driver.find_element_by_xpath(self.hp.podiumChatbtn)
         self.driver.close()
 
@@ -25,7 +25,7 @@ class Test_HomePage:
         self.driver = setup
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
-        sleep(0.50)
+        self.driver.maximize_window()
         assert self.driver.find_element_by_xpath(self.hp.platformFooterLink)
         self.driver.close()
 
@@ -33,7 +33,7 @@ class Test_HomePage:
         self.driver = setup
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
-        sleep(0.50)
+        self.driver.maximize_window()
         self.driver.find_element_by_id(self.hp.sliderLeftId)
         assert self.driver.find_element_by_xpath(self.hp.sliderImage4).is_displayed()
         self.driver.find_element_by_id(self.hp.sliderRightId).click()
@@ -44,13 +44,14 @@ class Test_HomePage:
         self.driver = setup
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
+        self.driver.maximize_window()
         try:
-            sleep(5.50)
             wait = WebDriverWait(self.driver,
                                  10).until(EC.presence_of_element_located((By.XPATH,
                                                                                     self.hp.loginHeader ))).click()
 
         finally:
-            result = self.driver.find_element_by_xpath(self.hp.loginHeader)
+            #result = self.driver.find_element_by_xpath(self.hp.loginHeader)
+            assert self.driver.find_element_by_xpath(self.hp.loginPageFormid).is_displayed()
             self.driver.close()
 
