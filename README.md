@@ -9,6 +9,7 @@ I would however would have liked to test that the Chat functionality worked by s
 I could not test SQL injection as i cannot submit the form and the site is not using js to validate most of the fields.
 
 **To run the tests.** 
+Until I have an image created you will need to build it to run. As soon as it is in good shape i will build and put on Dockerhub.
 `docker build -t pytest .`
 
 

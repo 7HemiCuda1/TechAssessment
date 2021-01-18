@@ -8,7 +8,7 @@ from selenium import webdriver
 def setup(browser):
     options = Options()
     options.add_argument("--no-sandbox")
-    #options.add_argument("--headless")
+    options.add_argument("--headless")
     options.add_argument("disable-infobars")
     options.add_argument("--disable-extensions")
     options.add_argument("--disable-dev-shm-usage")
@@ -17,7 +17,8 @@ def setup(browser):
     options.experimental_options["prefs"] = chrome_prefs
     chrome_prefs["profile.default_content_settings"] = {"images": 2}
     #TODO: make this support for windows too.
-    driver = webdriver.Chrome(executable_path='/usr/src/app/chromedriver', options=options)
+    driver = webdriver.Chrome(options=options)
+    #executable_path='/usr/src/app/chromedriver',
     return driver
 
 @pytest.fixture()

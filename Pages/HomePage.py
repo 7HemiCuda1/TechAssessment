@@ -1,3 +1,8 @@
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+
+
 class HomePage:
     watchDemoBox = '//*[@id="theme-white"]/nav/div/div[2]/ul/li[2]/a'
     loginHeader = '//*[@id="theme-white"]/nav/div/div[2]/ul/li[1]/a'
@@ -15,7 +20,7 @@ class HomePage:
     sliderImage2 = '//*[@id="video-2-img"]'
     sliderImage3 = '//*[@id="video-3-img"]'
     sliderImage4 = '//*[@id="video-4-img"]'
-    loginPageFormid = 'emailOrPhoneInput'
+
 
     # podiumChatSend = "//*[@id="ComposeMessage"]/form/div[2]/div[2]/button/div"
 
@@ -38,7 +43,7 @@ class HomePage:
         self.driver.find_element_by_xpath(self.watchDemoBox).click()
 
     def click_login_btn(self):
-        self.driver.find_element_by_xpath(self.loginHeader).click()
+        wait = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, self.loginHeader ))).click()
 
     def click_platform_btn(self):
         self.driver.find_element_by_xpath(self.platformFooterLink).click()

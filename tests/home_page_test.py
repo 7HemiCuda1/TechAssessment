@@ -1,10 +1,11 @@
 import pytest
 from time import sleep
 from Pages.HomePage import HomePage
+from Pages.AuthPage import AuthPage
+
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-
 
 class Test_HomePage:
     baseURL = "https://www.podium.com/"
@@ -18,6 +19,7 @@ class Test_HomePage:
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
         self.driver.maximize_window()
+        # TODO Clean this up and move to the class.
         self.driver.find_element_by_xpath(self.hp.podiumChatbtn)
         self.driver.close()
 
@@ -26,6 +28,7 @@ class Test_HomePage:
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
         self.driver.maximize_window()
+        # TODO Clean this up and move to the class.
         assert self.driver.find_element_by_xpath(self.hp.platformFooterLink)
         self.driver.close()
 
@@ -34,6 +37,7 @@ class Test_HomePage:
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
         self.driver.maximize_window()
+        #TODO Clean this up and move to the class.
         try:
             wait = WebDriverWait(self.driver,
                                  10).until(EC.presence_of_element_located((By.ID, self.hp.sliderLeftId))).click()
@@ -54,12 +58,9 @@ class Test_HomePage:
         self.hp = HomePage(self.driver)
         self.driver.maximize_window()
         try:
-            wait = WebDriverWait(self.driver,
-                                 10).until(EC.presence_of_element_located((By.XPATH,
-                                                                                    self.hp.loginHeader ))).click()
+            self.hp.click_login_btn()
 
         finally:
-            #result = self.driver.find_element_by_xpath(self.hp.loginHeader)
-            assert self.driver.find_element_by_id(self.hp.loginPageFormid).is_displayed()
-            self.driver.close()
+            self.lp = AuthPage(self.driver)
+            self.driver.close(self.driver)
 
