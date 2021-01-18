@@ -1,6 +1,9 @@
 import pytest
 from time import sleep
 from Pages.HomePage import HomePage
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 
 class Test_HomePage:
@@ -10,7 +13,7 @@ class Test_HomePage:
     # pytest -s -v --html=Reports/report.html tests/
     # TODO: Add logging
 
-    def test_chat_form_button(self, setup):
+    def chat_button(self, setup):
         self.driver = setup
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
@@ -18,21 +21,20 @@ class Test_HomePage:
         self.driver.find_element_by_xpath(self.hp.podiumChatbtn)
         self.driver.close()
 
-    def test_platform_navigation(self, setup):
+    def for_platform(self, setup):
         self.driver = setup
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
         sleep(0.50)
-        self.driver.find_element_by_xpath(self.hp.platformFooterLink).click()
-        assert self.driver.current_url.contains("interaction-platform")
+        assert self.driver.find_element_by_xpath(self.hp.platformFooterLink)
         self.driver.close()
 
-    def test_slider_function(self,setup):
+    def slider_function(self,setup):
         self.driver = setup
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
         sleep(0.50)
-        self.driver.find_element_by_id(self.hp.sliderLeftId).click()
+        self.driver.find_element_by_id(self.hp.sliderLeftId)
         assert self.driver.find_element_by_xpath(self.hp.sliderImage4).is_displayed()
         self.driver.find_element_by_id(self.hp.sliderRightId).click()
         assert self.driver.find_element_by_xpath(self.hp.sliderImage1).is_displayed()
@@ -42,8 +44,11 @@ class Test_HomePage:
         self.driver = setup
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
-        sleep(0.50)
-        self.driver.find_element_by_xpath(self.hp.loginHeader).click()
-
-        self.driver.close()
+        try:
+            wait = WebDriverWait(self.driver,
+                                 10).until(EC.presence_of_element_located((By.XPATH,
+                                                                                    self.hp.loginHeader ))).click()
+        finally:
+            result = self.driver.find_element_by_xpath(self.hp.loginHeader)
+            self.driver.close()
 
