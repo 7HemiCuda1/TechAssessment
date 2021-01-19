@@ -12,6 +12,7 @@ I could not test SQL injection as i cannot submit the form and the site is not u
 Until I have an image created you will need to build it to run. As soon as it is in good shape i will build and put on Dockerhub.
 `docker build -t pytest .`
 
+To make this easier to use i will add a web interface to allow you to select the tests you want to run. Create test sets etc. 
 
 Pytest locally. 
-`pytest -s -v tests/ `
+`pytest -s -v -m functionality `

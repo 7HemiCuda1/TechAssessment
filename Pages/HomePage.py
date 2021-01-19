@@ -6,8 +6,8 @@ from selenium.webdriver.common.by import By
 class HomePage:
     watchDemoBox = '//*[@id="theme-white"]/nav/div/div[2]/ul/li[2]/a'
     loginHeader = '//*[@id="theme-white"]/nav/div/div[2]/ul/li[1]/a'
-    podiumChatbtn = '//*[@id="main"]/div/div/div/div/button'
-    platformFooterLink = '//*[@id="colophon"]/section/div[1]/div[2]/div[1]/a[1]'
+    podiumChatbtn = '//*[@id="Layer_1-2"]/polygon'
+    platformFooterLinkId = '#colophon > section > div.section-container > div.desktop-footer-wrapper.g-footer-content > div.product > a:nth-child(2)'
     podiumChatText = '//*[@id="ComposeMessage"]/div[1]/div/div'
     podiumChatName = '//*[@id="Name"]'
     podiumChatMobileNumber = '//*[@id="ComposeMessage"]/form/div[3]/div[2]'
@@ -49,7 +49,7 @@ class HomePage:
 
     def click_platform_btn(self):
         wait = WebDriverWait(self.driver,
-                             10).until(EC.presence_of_element_located((By.XPATH, self.platformFooterLink))).click()
+                             10).until(EC.presence_of_element_located((By.CSS_SELECTOR, self.platformFooterLinkId))).click()
 
     def click_podium_chat_btn(self):
         wait = WebDriverWait(self.driver,
