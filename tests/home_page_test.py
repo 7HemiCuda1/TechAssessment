@@ -19,8 +19,8 @@ class Test_HomePage:
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
         self.driver.maximize_window()
-        # TODO Clean this up and move to the class.
-        self.driver.find_element_by_xpath(self.hp.podiumChatbtn)
+        self.hp.click_chat_btn()
+        #TODO: Add assert for chat form.
         self.driver.close()
 
     def for_platform(self, setup):
@@ -28,8 +28,8 @@ class Test_HomePage:
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
         self.driver.maximize_window()
-        # TODO Clean this up and move to the class.
-        assert self.driver.find_element_by_xpath(self.hp.platformFooterLink)
+        self.hp.platformFooterLink()
+        #TODO: Add assert for new page.
         self.driver.close()
 
     def slider_function(self,setup):
@@ -37,18 +37,14 @@ class Test_HomePage:
         self.driver.get(self.baseURL)
         self.hp = HomePage(self.driver)
         self.driver.maximize_window()
-        #TODO Clean this up and move to the class.
         try:
-            wait = WebDriverWait(self.driver,
-                                 10).until(EC.presence_of_element_located((By.ID, self.hp.sliderLeftId))).click()
+            self.hp.click_slider_left()
         finally:
-            assert self.driver.find_element_by_xpath(self.hp.sliderImage4).is_displayed()
-
+            self.hp.correct_slider_image_displayed(4)
         try:
-            wait = WebDriverWait(self.driver,
-                                 10).until(EC.presence_of_element_located((By.ID, self.hp.sliderRightId))).click()
+            self.hp.click_slider_right()
         finally:
-            assert self.driver.find_element_by_xpath(self.hp.sliderImage1).is_displayed()
+            self.hp.correct_slider_image_displayed(1)
 
         self.driver.close()
 
@@ -62,5 +58,5 @@ class Test_HomePage:
 
         finally:
             self.lp = AuthPage(self.driver)
-            self.driver.close(self.driver)
+            self.driver.close()
 

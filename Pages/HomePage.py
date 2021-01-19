@@ -21,7 +21,6 @@ class HomePage:
     sliderImage3 = '//*[@id="video-3-img"]'
     sliderImage4 = '//*[@id="video-4-img"]'
 
-
     # podiumChatSend = "//*[@id="ComposeMessage"]/form/div[2]/div[2]/button/div"
 
     def __init__(self, driver):
@@ -40,29 +39,39 @@ class HomePage:
         self.driver.find_element_by_xpath(self.podiumChatMessage).send_keys(message)
 
     def click_watch_demo(self):
-        self.driver.find_element_by_xpath(self.watchDemoBox).click()
+        wait = WebDriverWait(self.driver,
+                             10).until(EC.presence_of_element_located((By.XPATH, self.watchDemoBox))).click()
 
     def click_login_btn(self):
-        wait = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, self.loginHeader ))).click()
+        wait = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, self.loginHeader))).click()
 
     def click_platform_btn(self):
-        self.driver.find_element_by_xpath(self.platformFooterLink).click()
+        wait = WebDriverWait(self.driver,
+                             10).until(EC.presence_of_element_located((By.XPATH, self.platformFooterLink))).click()
 
     def click_podium_chat_btn(self):
-        self.driver.find_element_by_xpath(self.podiumChatbtn).click()
+        wait = WebDriverWait(self.driver,
+                              10).until(EC.presence_of_element_located((By.XPATH, self.podiumChatbtn))).click()
 
     def click_slider_right(self):
-        self.driver.find_element_by_xpath(self.sliderRight).click()
+        wait = WebDriverWait(self.driver,
+                             10).until(EC.presence_of_element_located((By.ID, self.sliderRightId))).click()
 
     def click_slider_left(self):
-        self.driver.find_element_by_xpath(self.sliderLeft).click()
+        wait = WebDriverWait(self.driver,
+                             10).until(EC.presence_of_element_located((By.ID, self.sliderLeftId))).click()
 
-    def slider_image(self, num) -> bool:
-        try:
-            self.driver.find_element_by_xpath(self.slider_image + num)
-            return True
-        except:
-            return False
+    def correct_slider_image_displayed(self, num):
+        if num == 1:
+            assert self.driver.find_element_by_xpath(self.sliderImage1).is_displayed()
+        elif num == 2:
+            assert self.driver.find_element_by_xpath(self.sliderImage2).is_displayed()
+        elif num == 3:
+            assert self.driver.find_element_by_xpath(self.sliderImage3).is_displayed()
+        else:
+            assert self.driver.find_element_by_xpath(self.sliderImage4).is_displayed()
 
     def click_chat_btn(self):
-        self.driver.find_element_by_xpath(self.podiumChatbtn)
+        wait = WebDriverWait(self.driver,
+                             10).until(EC.presence_of_element_located((By.XPATH, self.podiumChatbtn))).click()
