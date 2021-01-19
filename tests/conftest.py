@@ -15,9 +15,12 @@ def setup(browser):
     options.add_argument("--remote-debugging-port=9222")
     options.add_argument("--disable-features=VizDisplayCompositor")
     options.add_argument("--disable-gpu")
-    chrome_prefs = {}
-    options.experimental_options["prefs"] = chrome_prefs
-    chrome_prefs["profile.default_content_settings"] = {"images": 2}
+    options.add_argument('window-size=1920x1480')
+    #options.add_argument("--disable-setuid-sandbox")
+    #options.add_argument("start-maximized")
+    #chrome_prefs = {}
+    #options.experimental_options["prefs"] = chrome_prefs
+    #chrome_prefs["profile.default_content_settings"] = {"images": 2}
     #TODO: make this support for windows too.
     driver = webdriver.Chrome(options=options)
     #executable_path='/usr/src/app/chromedriver',

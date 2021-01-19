@@ -43,8 +43,9 @@ class HomePage:
                              10).until(EC.presence_of_element_located((By.XPATH, self.watchDemoBox))).click()
 
     def click_login_btn(self):
-        wait = WebDriverWait(self.driver, 10).until(
+        wait = WebDriverWait(self.driver, 30).until(
             EC.presence_of_element_located((By.XPATH, self.loginHeader))).click()
+        #TODO: Assert the login page loads.
 
     def click_platform_btn(self):
         wait = WebDriverWait(self.driver,
