@@ -13,6 +13,8 @@ def setup(browser):
     options.add_argument("--disable-extensions")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--remote-debugging-port=9222")
+    options.add_argument("--disable-features=VizDisplayCompositor")
+    options.add_argument("--disable-gpu")
     chrome_prefs = {}
     options.experimental_options["prefs"] = chrome_prefs
     chrome_prefs["profile.default_content_settings"] = {"images": 2}
